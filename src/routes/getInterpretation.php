@@ -36,6 +36,7 @@ $app->post('/api/MicrosoftAcademicSearch/getInterpretation', function ($request,
         $responseBody = str_replace("[,","[",$responseBody);
 
 
+
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
