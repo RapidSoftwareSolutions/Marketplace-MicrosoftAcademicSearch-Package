@@ -26,7 +26,7 @@ Takes an end user query string (i.e., a query entered by a user of your applicat
 |---------|------------|----------
 | key     | credentials| Subscription key which provides access to this API. 
 | region  | String     | The region that most closely describes your location.Example: westcentralus
-| complete| Select     | 1 means that auto-completion suggestions are generated based on the grammar and graph data.
+| complete| Select     | true means that auto-completion suggestions are generated based on the grammar and graph data.
 | count   | Number     | Maximum number of interpretations to return.
 | offset  | Number     | Index of the first interpretation to return. For example, count=2&offset=0 returns interpretations 0 and 1. count=2&offset=2 returns interpretations 2 and 3.
 | timeout | Number     | Timeout in milliseconds. Only interpretations found before the timeout has elapsed are returned.

@@ -48,7 +48,7 @@
                         "true",
                         "false"
                     ],
-                    "info": "1 means that auto-completion suggestions are generated based on the grammar and graph data.",
+                    "info": "true means that auto-completion suggestions are generated based on the grammar and graph data.",
                     "required": false
                 },
                 {
