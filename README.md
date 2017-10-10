@@ -67,7 +67,6 @@ The graph query interface powered by Graph Engine allows us to not only query en
 |-------|------------|----------
 | key   | credentials| Subscription key which provides access to this API. 
 | region| String     | The region that most closely describes your location.Example: westcentralus
-| mode  | Select     | Request type of query. Should be "json" or "lambda"
 | body  | JSON       | Query object
 
 ## MicrosoftAcademicSearch.calculateSimilarity

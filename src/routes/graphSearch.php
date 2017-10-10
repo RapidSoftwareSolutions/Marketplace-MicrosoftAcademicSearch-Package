@@ -30,12 +30,7 @@ $app->post('/api/MicrosoftAcademicSearch/graphSearch', function ($request, $resp
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Ocp-Apim-Subscription-Key"=>"{$data['key']}"];
 
-    if($data['mode'] == 'json'){
-        $requestParams['json'] = $post_data['args']['body'];
-    } else if ($data['mode'] == 'lambda') {
-        $requestParams['body'] = $post_data['args']['body'];
-        $requestParams['headers']['Content-Type'] = 'text/plain';
-    }
+    $requestParams['json'] = $post_data['args']['body'];
 
     try {
         $resp = $client->post($query_str, $requestParams);

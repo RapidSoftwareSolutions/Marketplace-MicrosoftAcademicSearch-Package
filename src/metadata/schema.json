@@ -19,7 +19,8 @@
         ]
     },
     "steps": [
-        "Subscribe to the Microsoft Text Analytics API on the https://azure.microsoft.com/en-us/services/cognitive-services/AcademicSearch",
+        "Subscribe to the Microsoft Text Analytics API on the https://azure.microsoft.com/en-us/services/cognitive-services",
+        "Search: AcademicSearch",
         "Click create button.",
         "In settings->credential section you will see apiKey (Ocp-Apim-Subscription-Key)"
     ],
@@ -277,16 +278,6 @@
                     "name": "region",
                     "type": "String",
                     "info": "The region that most closely describes your location.Example: westcentralus",
-                    "required": true
-                },
-                {
-                    "name": "mode",
-                    "type": "Select",
-                    "options": [
-                        "json",
-                        "lambda"
-                    ],
-                    "info": "Request type of query. Should be \"json\" or \"lambda\"",
                     "required": true
                 },
                 {
