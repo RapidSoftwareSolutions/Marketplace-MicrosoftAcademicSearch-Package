@@ -1,0 +1,359 @@
+{
+    "package": "MicrosoftAcademicSearch",
+    "tagline": "MicrosoftAcademicSearch API",
+    "description": "Discover more of what you need more quickly. Semantic search provides you with   highly relevant search results from continually refreshed and extensive academic content from over 120 million publications.",
+    "image": "https:\/\/logo.clearbit.com\/academic.research.microsoft.com",
+    "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-MicrosoftAcademicSearch-Package",
+    "keywords": [
+        "API",
+        "academic",
+        "text",
+        "search",
+        "microsoft",
+        "azure"
+    ],
+    "accounts": {
+        "domain": "http:\/\/academic.research.microsoft.com\/",
+        "credentials": [
+            "key"
+        ]
+    },
+    "basicUrl": "http:\/\/{$data['region']}.api.cognitive.microsoft.com\/academic\/v1.0",
+    "blocks": [
+        {
+            "name": "getInterpretation",
+            "description": "Takes an end user query string (i.e., a query entered by a user of your application) and returns formatted interpretations of user intent based on the Academic Graph data and the Academic Grammar.To provide an interactive experience, you can call this method repeatedly after each character entered by the user. In that case, you should set the complete parameter to 1 to enable auto-complete suggestions. If your application does not want auto-completion, you should set the complete parameter to 0.",
+            "args": [
+                {
+                    "name": "key",
+                    "type": "credentials",
+                    "info": "Subscription key which provides access to this API. ",
+                    "required": true
+                },
+                {
+                    "name": "region",
+                    "type": "String",
+                    "info": "The region that most closely describes your location.Example: westcentralus",
+                    "required": true
+                },
+                {
+                    "name": "complete",
+                    "type": "Select",
+                    "options": [
+                        "true",
+                        "false"
+                    ],
+                    "info": "1 means that auto-completion suggestions are generated based on the grammar and graph data.",
+                    "required": false
+                },
+                {
+                    "name": "count",
+                    "type": "Number",
+                    "info": "Maximum number of interpretations to return.",
+                    "required": false
+                },
+                {
+                    "name": "offset",
+                    "type": "Number",
+                    "info": "Index of the first interpretation to return. For example, count=2&offset=0 returns interpretations 0 and 1. count=2&offset=2 returns interpretations 2 and 3.",
+                    "required": false
+                },
+                {
+                    "name": "timeout",
+                    "type": "Number",
+                    "info": "Timeout in milliseconds. Only interpretations found before the timeout has elapsed are returned.",
+                    "required": false
+                },
+                {
+                    "name": "query",
+                    "type": "String",
+                    "info": "Query entered by user. If complete is set to 1, query will be interpreted as a prefix for generating query auto-completion suggestions.",
+                    "required": true
+                },
+                {
+                    "name": "model",
+                    "type": "String",
+                    "info": "Name of the model that you wish to query. Currently, the value defaults to \"latest\".",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "url": "\/interpret",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "query",
+                            "complete",
+                            "count",
+                            "offset",
+                            "timeout",
+                            "model"
+                        ]
+                    }
+                ],
+                "headers": {
+                    "Ocp-Apim-Subscription-Key": "{$data['key']}",
+                    "Content-Type ": "application\/json"
+                }
+            }
+        },
+        {
+            "name": "getAcademicEntities",
+            "description": "Return a set of academic entities based on a query expression.",
+            "args": [
+                {
+                    "name": "key",
+                    "type": "credentials",
+                    "info": "Subscription key which provides access to this API. ",
+                    "required": true
+                },
+                {
+                    "name": "region",
+                    "type": "String",
+                    "info": "The region that most closely describes your location.Example: westcentralus",
+                    "required": true
+                },
+                {
+                    "name": "expr",
+                    "type": "String",
+                    "info": "A query expression that specifies which entities should be returned.",
+                    "required": true
+                },
+                {
+                    "name": "model",
+                    "type": "String",
+                    "info": "Name of the model that you wish to query. Currently, the value defaults to \"latest\".",
+                    "required": false
+                },
+                {
+                    "name": "count",
+                    "type": "Number",
+                    "info": "Number of results to return.",
+                    "required": false
+                },
+                {
+                    "name": "offset",
+                    "type": "Number",
+                    "info": "Index of the first result to return.",
+                    "required": false
+                },
+                {
+                    "name": "orderby",
+                    "type": "String",
+                    "info": "Name of an attribute that is used for sorting the entities. Optionally, ascending\/descending can be specified. The format is: name:asc or name:desc.",
+                    "required": false
+                },
+                {
+                    "name": "attributes",
+                    "type": "List",
+                    "info": "List that specifies the attribute values that are included in the response. Attribute names are case-sensitive.",
+                    "required": false,
+                    "structure": {
+                        "name": "attribute",
+                        "type": "String",
+                        "info": "Single attribute. (case-sensitive)"
+                    },
+                    "vendorSchema": {
+                        "format": "toString:{,}"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "url": "\/evaluate",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "expr",
+                            "model",
+                            "count",
+                            "offset",
+                            "orderby",
+                            "attributes"
+                        ]
+                    }
+                ],
+                "headers": {
+                    "Ocp-Apim-Subscription-Key": "{$data['key']}",
+                    "Content-Type ": "application\/json"
+                }
+            }
+        },
+        {
+            "name": "calcHistogram",
+            "description": "Calculate the distribution of attribute values for a set of paper entities.",
+            "args": [
+                {
+                    "name": "key",
+                    "type": "credentials",
+                    "info": "Subscription key which provides access to this API. ",
+                    "required": true
+                },
+                {
+                    "name": "region",
+                    "type": "String",
+                    "info": "The region that most closely describes your location.Example: westcentralus",
+                    "required": true
+                },
+                {
+                    "name": "expr",
+                    "type": "String",
+                    "info": "A query expression that specifies the entities over which to calculate histograms.",
+                    "required": true
+                },
+                {
+                    "name": "model",
+                    "type": "String",
+                    "info": "Name of the model that you wish to query. Currently, the value defaults to \"latest\".",
+                    "required": false
+                },
+                {
+                    "name": "attributes",
+                    "type": "List",
+                    "info": "List that specifies the attribute values that are included in the response. Attribute names are case-sensitive.",
+                    "required": false,
+                    "structure": {
+                        "name": "attribute",
+                        "type": "String",
+                        "info": "Single attribute. (case-sensitive)"
+                    },
+                    "vendorSchema": {
+                        "format": "toString:{,}"
+                    }
+                },
+                {
+                    "name": "count",
+                    "type": "Number",
+                    "info": "Number of results to return.",
+                    "required": false
+                },
+                {
+                    "name": "offset",
+                    "type": "Number",
+                    "info": "Index of the first result to return.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "url": "\/calchistogram",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "expr",
+                            "model",
+                            "attributes",
+                            "count",
+                            "offset"
+                        ]
+                    }
+                ],
+                "headers": {
+                    "Ocp-Apim-Subscription-Key": "{$data['key']}",
+                    "Content-Type ": "application\/json"
+                }
+            }
+        },
+        {
+            "name": "graphSearch",
+            "description": "The graph query interface powered by Graph Engine allows us to not only query entities that meet certain criteria (e.g. find a paper with a given title), but also perform pattern matching via graph exploration (e.g. detect co-authorship).",
+            "args": [
+                {
+                    "name": "key",
+                    "type": "credentials",
+                    "info": "Subscription key which provides access to this API. ",
+                    "required": true
+                },
+                {
+                    "name": "region",
+                    "type": "String",
+                    "info": "The region that most closely describes your location.Example: westcentralus",
+                    "required": true
+                },
+                {
+                    "name": "mode",
+                    "type": "Select",
+                    "options": [
+                        "json",
+                        "lambda"
+                    ],
+                    "info": "Request type of query. Should be \"json\" or \"lambda\"",
+                    "required": true
+                },
+                {
+                    "name": "body",
+                    "type": "JSON",
+                    "info": "Query object",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "url": "\/graph\/search",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "mode"
+                        ]
+                    }
+                ],
+                "headers": {
+                    "Ocp-Apim-Subscription-Key": "{$data['key']}",
+                    "Content-Type ": "application\/json"
+                }
+            }
+        },
+        {
+            "name": "calculateSimilarity",
+            "description": "Calculate a floating point value based on 2 text inputs. ",
+            "args": [
+                {
+                    "name": "key",
+                    "type": "credentials",
+                    "info": "Subscription key which provides access to this API. ",
+                    "required": true
+                },
+                {
+                    "name": "region",
+                    "type": "String",
+                    "info": "The region that most closely describes your location.Example: westcentralus",
+                    "required": true
+                },
+                {
+                    "name": "s1",
+                    "type": "String",
+                    "info": "String to be compared, input length is bounded by the limitation of the length of URL. ",
+                    "required": true
+                },
+                {
+                    "name": "s2",
+                    "type": "String",
+                    "info": "String to be compared, input length is bounded by the limitation of the length of URL.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "url": "\/similarity",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "s1",
+                            "s2"
+                        ]
+                    }
+                ],
+                "headers": {
+                    "Ocp-Apim-Subscription-Key": "{$data['key']}",
+                    "Content-Type ": "application\/json"
+                }
+            }
+        }
+    ]
+}
