@@ -6,7 +6,7 @@ Discover more of what you need more quickly. Semantic search provides you with  
 * Credentials: key
 
 ## How to get credentials: 
-1. Subscribe to the Microsoft Text Analytics API on the [Microsoft Azure portal].(https://azure.microsoft.com/en-us/services/cognitive-services/AcademicSearch/).
+1. Subscribe to the Microsoft Text Analytics API on the [Microsoft Azure portal](https://azure.microsoft.com/en-us/services/cognitive-services/AcademicSearch/).
 2. Click create button.
 3. In settings->credential section you will see apiKey (Ocp-Apim-Subscription-Key)
 
