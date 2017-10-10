@@ -18,6 +18,11 @@
             "key"
         ]
     },
+    "steps": [
+        "Subscribe to the Microsoft Text Analytics API on the https://azure.microsoft.com/en-us/services/cognitive-services/AcademicSearch",
+        "Click create button.",
+        "In settings->credential section you will see apiKey (Ocp-Apim-Subscription-Key)"
+    ],
     "basicUrl": "http:\/\/{$data['region']}.api.cognitive.microsoft.com\/academic\/v1.0",
     "blocks": [
         {
