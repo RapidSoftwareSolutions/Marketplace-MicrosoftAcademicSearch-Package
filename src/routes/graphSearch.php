@@ -18,8 +18,6 @@ $app->post('/api/MicrosoftAcademicSearch/graphSearch', function ($request, $resp
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
-
     $client = $this->httpClient;
     $query_str = "http://{$data['region']}.api.cognitive.microsoft.com/academic/v1.0/graph/search";
 
